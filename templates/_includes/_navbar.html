@@ -4,7 +4,8 @@
         {% if user.is_authenticated %}
         <a href="{% url 'logout' %}" class="text-light">Logout</a>
         {% else %}
-        <a href="{% url 'login' %}" class="text-light">Login</a>
+        <a href="{% url 'register' %}" class="text-light pr-2">Register</a>
+        <a href="{% url 'login' %}" class="text-light pr-4">Login</a>
         {% endif %}
     </div>
 </nav>

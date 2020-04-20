@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Note
 
 # Create your views here.
@@ -6,16 +6,24 @@ from .models import Note
 
 def home(request):
     if request.method == 'POST':
-        import ipdb
-        ipdb.set_trace()
-        title = request.POST['title']
-        content = request.POST['editor']
-
-        note = Note(title=title, content=content, author=user)
-        note.save()
+        if request.user.is_authenticated:
+            title = request.POST['title']
+            content = request.POST['editor']
+            note = Note(title=title, content=content, author=request.user)
+            note.save()
+        else:
+            return redirect('login')
 
     # Sidebar option
     if request.user.is_authenticated:
-        notes = Note.objects.order_by('-date')
+        notes = Note.objects.filter(author=request.user).order_by('-date')
         context = {'notes': notes}
-    return render(request, 'home/home.html')
+    else:
+        context = {}
+    return render(request, 'home/home.html', context)
+
+
+def note(request, note_id):
+    selected_note = get_object_or_404(Note, pk=note_id)
+    context = {'note': selected_note}
+    return render(request, 'home/note.html', context)
