@@ -25,13 +25,16 @@
 </div>
 {% endblock %}
 {% block home %}
-<form class="pt-4 pr-3" method="POST">
+<form class="pt-4 pr-3" method="POST" action="{% url 'home' %}">
     {% csrf_token %}
     <div class="form-group">
-        <input type="Text" class="form-control" name="title" placeholder="Title">
+        <input type="Text" class="form-control" name="title" {% if title %} value="{{ title }}" {% endif %}
+            placeholder="Title">
     </div>
     <div class="form-group">
-        <textarea name="editor"></textarea>
+        <textarea name="editor">
+            {% if content %} {{ content }} {% endif %}
+        </textarea>
     </div>
     <input type="submit" value="submit" class="btn btn-outline-success">
 </form>

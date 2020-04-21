@@ -7,7 +7,7 @@
 </div>
 <div class="container pt-3">
     <div class="float-right">
-        <a href="#" class="btn btn-outline-warning" title="Edit">
+        <a href="{% url 'edit-note' note.id %}" class="btn btn-outline-warning" title="Edit">
             <svg class="bi bi-pencil pl-1" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
@@ -18,7 +18,7 @@
                     clip-rule="evenodd" />
             </svg>
         </a>
-        <a href="#" class="btn btn-outline-danger" title="Delete">
+        <a href="{% url 'delete-note' note.id %}" class="btn btn-outline-danger" title="Delete">
             <svg class="bi bi-trash-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
@@ -26,7 +26,7 @@
                     clip-rule="evenodd" />
             </svg>
         </a>
-        <a href="#" class="btn btn-outline-success" title="Save as PDF">
+        <a href="{% url 'pdf-note' note.id %}" class="btn btn-outline-success" title="Save as PDF">
             <svg class="bi bi-file-earmark-arrow-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
